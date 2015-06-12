@@ -1,0 +1,38 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public ListNode reverseListRecursive(ListNode head) {
+    
+    //reference: http://stackoverflow.com/questions/354875/reversing-a-linked-list-in-java-recursively
+        if(head == null) return null;
+        if(head.next == null) return head;
+        
+        ListNode secondNode = head.next;
+        head.next = null;
+        
+        ListNode reversed = reverseList(secondNode);
+        
+        secondNode.next = head;
+        
+        return reversed;
+    
+    }
+    public ListNode reverseListIterative(ListNode head){
+      ListNode prev = null, p = head;
+    
+      while(p != null){
+        ListNode q = p.next;
+        p.next = prev;
+        prev = p;
+        p = q;
+    }
+    return prev;
+    
+    }
+}
